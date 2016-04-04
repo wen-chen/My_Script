@@ -1,0 +1,19 @@
+Usage: python3 mutual_rank.py -i raw.network -o mutual_rank.network
+
+The input file must contain 3 column separated by Tab. Such as:
+"nodeA" "nodeB" "correlation_coefficent"
+.......
+"#" annotation is not allowed.
+Duplicate is not allowed. Such as:
+"nodeA" "nodeB" "correlation_coefficent"
+"nodeB" "nodeA" "correlation_coefficent" 
+
+The output file also contain 3 column and the order is the same with input file.  "correlation_coefficent" be replaced with "mutual_rank". Such as:
+"nodeA" "nodeB" "mutual_ran"
+
+Mutual rank:
+When gene A is third strongly coexpressed genes for gene B, PCC rank of gene A to gene B is 3. This PCC rank was
+used as one of coexpression measures. Since PCC rank between two genes of interest can be different, we introduced another coexpression measure, mutual rank, by taking a geometric average of the PCC rank from gene A to gene B and that of gene B to gene A. 
+
+Obayashi, T. and Kinoshita, K. (2009) Rank of correlation coefficient as a comparable measure for biological significance of gene coexpression. DNA research : an international journal for rapid publication of reports on genes and genomes, 16, 249-260.
+
