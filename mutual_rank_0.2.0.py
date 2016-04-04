@@ -4,7 +4,7 @@ Created on Sun Apr  3 09:29:00 2016
 
 @author: biochen
 """
-
+from __future__ import division
 import sys, getopt, csv
 
 opts, args = getopt.getopt(sys.argv[1:], "hi:o:")
@@ -14,7 +14,7 @@ for op, value in opts:
     elif op == "-o":
         netwrok_out_file_name = value
     elif op == "-h":
-        print("Usage: python3 mutual_rank.py -i raw.network -o mutual_rank.network")
+        print("Usage: python2 mutual_rank.py -i raw.network -o mutual_rank.network")
         sys.exit()
 
 network_in_file = open(network_in_file_name, "r")
