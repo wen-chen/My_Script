@@ -1,6 +1,4 @@
 Usage: python mutual_rank.py -i raw.network -o mutual_rank.network
-mutual_rank_0.1.0.py for python3
-mutual_rank_0.2.0.py for python2
 
 The input file must contain 3 column separated by Tab. Such as:
 "nodeA" "nodeB" "correlation_coefficent"

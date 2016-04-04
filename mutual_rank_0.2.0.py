@@ -4,7 +4,6 @@ Created on Sun Apr  3 09:29:00 2016
 
 @author: biochen
 """
-from __future__ import division
 import sys, getopt, csv
 
 opts, args = getopt.getopt(sys.argv[1:], "hi:o:")
@@ -14,7 +13,7 @@ for op, value in opts:
     elif op == "-o":
         netwrok_out_file_name = value
     elif op == "-h":
-        print("Usage: python2 mutual_rank.py -i raw.network -o mutual_rank.network")
+        print("Usage: python mutual_rank.py -i raw.network -o mutual_rank.network")
         sys.exit()
 
 network_in_file = open(network_in_file_name, "r")
@@ -76,7 +75,7 @@ for edge in edges:
     rank_a_b = network[node_a][1][rank_a_b_index]
     rank_b_a_index = network[node_b][0].index(node_a)
     rank_b_a = network[node_b][1][rank_b_a_index]
-    mutual_rank = (rank_a_b * rank_b_a) ** (1/2)
+    mutual_rank = (rank_a_b * rank_b_a) ** 0.5
     item = [node_a, node_b, mutual_rank]
     network_out.writerow(item)   
 
