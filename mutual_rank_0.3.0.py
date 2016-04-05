@@ -4,7 +4,7 @@ Created on Sun Apr  3 09:29:00 2016
 
 @author: biochen
 """
-import sys, getopt, csv
+import sys, getopt
 
 opts, args = getopt.getopt(sys.argv[1:], "hi:o:")
 for op, value in opts:
@@ -18,13 +18,13 @@ for op, value in opts:
 
 network_in_file = open(network_in_file_name, "r")
 netwrok_out_file = open(netwrok_out_file_name, "w")
-network_in = csv.reader(network_in_file, dialect = "excel-tab")
-network_out = csv.writer(netwrok_out_file, dialect = "excel-tab")
 
 #Load the network to generate a dict
 network = {}
 edges = []
-for item in network_in:
+for line in network_in_file:
+    line = line.rstrip()
+    item = line.split()
     edges.append([item[0], item[1]])
     if item[0] in network:
         network[item[0]][0].append(item[1])
@@ -63,21 +63,18 @@ def rankdata(vector):
             dupcount = 0
     return newvector
 
-#calculate rank and replace correlation coefficient
+#calculate rank
 for node in network:
-    network[node][1] = rankdata(network[node][1])
+    network[node] = dict(zip(network[node][0] ,rankdata(network[node][1])))
 
 #calculate mutual rank and output
 for edge in edges:    
-    node_a = edge[0]
-    node_b = edge[1]
-    rank_a_b_index = network[node_a][0].index(node_b)
-    rank_a_b = network[node_a][1][rank_a_b_index]
-    rank_b_a_index = network[node_b][0].index(node_a)
-    rank_b_a = network[node_b][1][rank_b_a_index]
-    mutual_rank = (rank_a_b * rank_b_a) ** 0.5
-    item = [node_a, node_b, mutual_rank]
-    network_out.writerow(item)   
+    rank1 = network[edge[0]][edge[1]]
+    rank2 = network[edge[1]][edge[0]]
+    mutual_rank = (rank1 * rank2) ** 0.5
+    item = [edge[0], edge[1], mutual_rank]
+    line = edge[0] + "\t" + edge[1] + "\t" + str(mutual_rank) + "\n"
+    netwrok_out_file.write(line)   
 
 network_in_file.close()
 netwrok_out_file.close()
