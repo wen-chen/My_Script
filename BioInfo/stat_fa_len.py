@@ -41,6 +41,6 @@ print("Min sequece length: " + str(min_value))
 print("Average sequece length: " + str(average_value))
 print("25% sequece length < " + str(Upper_value))
 print("Median sequece length: " + str(median_value))
-print("25% sequece length > " + str(Lower_value))        
+print("25% sequece length > " + str(Lower_value))   
 
             
