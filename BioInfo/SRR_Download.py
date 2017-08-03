@@ -15,7 +15,7 @@ for op, value in opts:
         print("Usage: python3 SRR_Download.py -i SRR_Number")
         sys.exit()
 
-constant = "wget -c ftp://ftp-trace.ncbi.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR/"
-variable = SRR[:6] + '/' + SRR + '/' + SRR + ".sra"
+constant = "wget -c ftp://ftp-trace.ncbi.nih.gov/sra/sra-instant/reads/ByRun/sra/"
+variable = SRR[:3] + '/' + SRR[:6] + '/' + SRR + '/' + SRR + ".sra"
 cmd = constant + variable
 os.system(cmd)
