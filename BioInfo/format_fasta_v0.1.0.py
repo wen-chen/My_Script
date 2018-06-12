@@ -7,14 +7,14 @@ Created on Mon Jun 11 17:50:32 2018
 
 import getopt, sys
 
-usage = "format_fasta.py -i input.fa -o output.fa -l length_per_line(default:60) -c case(U(upper, defualt) or L(lower))"
+usage = "format_fasta.py -i input.fa -o output.fa -l length_per_line(default:60) -c case(U(upper) or L(lower) defualt:not-change)"
 
 #获得参数
 opts, args = getopt.getopt(sys.argv[1:], "hi:o:l:c:")
 fa_in_file_name = ""
 fa_out_file_name = ""
 length = 60
-case = 'U'
+case = ''
 for op, value in opts:
     if op == "-i":
         fa_in_file_name = value
@@ -48,10 +48,7 @@ for i in range(fa_Num):
     if case == 'U':
         fa_Seq[i] = fa_Seq[i].upper()
     elif case == 'L':
-        fa_Seq[i] = fa_Seq[i].lower()
-    else:
-        print("case parameter can not be identified!")
-        sys.exit()
+        fa_Seq[i] = fa_Seq[i].lower()    
 
 #读出文件
 with open(fa_out_file_name, 'w') as fa_out_file:
