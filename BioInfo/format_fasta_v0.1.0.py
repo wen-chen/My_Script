@@ -43,7 +43,7 @@ with open(fa_in_file_name, 'r') as fa_in_file:
             fa_Seq[fa_Num].append(line)
 
 #处理大小写
-for i in range(fa_Num):
+for i in range(fa_Num + 1):
     fa_Seq[i] = ''.join(fa_Seq[i])
     if case == 'U':
         fa_Seq[i] = fa_Seq[i].upper()
@@ -52,7 +52,7 @@ for i in range(fa_Num):
 
 #读出文件
 with open(fa_out_file_name, 'w') as fa_out_file:
-    for i in range(fa_Num):
+    for i in range(fa_Num + 1):
         fa_out_file.write(fa_Info[i] + '\n')
         for seq in (fa_Seq[i][x: x + length] for x in range(0, len(fa_Seq[i]), length)):
             fa_out_file.write(seq + '\n')    
