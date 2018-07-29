@@ -10,19 +10,24 @@ import sys, getopt
 opts, args = getopt.getopt(sys.argv[1:], "hi:o:")
 for op, value in opts:
     if op == "-i":
-        FQ_in_File_Name = value
+        FASTQ_File_Name = value
     elif op == "-o":
-        FA_in_File_Name = value
+        FASTA_File_Name = value
     elif op == "-h":
         print("Usage: python3 fq2fa.py -i input.fq -o output.fa")
         sys.exit()
         
-fq = open(FQ_in_File_Name, "r")
-fa = open(FA_in_File_Name, "w")
+FASTQ_File = open(FASTQ_File_Name, "r")
+FASTA_File = open(FASTA_File_Name, "w")
+
 i = 1
-for line in fq:
-    if i%4 == 2:
-        fa.write(line)
+for line in FASTQ_File:
+    if i % 4 == 1:
+        line = line.replace("@", ">")
+        FASTA_File.write(line)
+    elif i % 4 == 2:
+        FASTA_File.write(line)
     i = i + 1
-fq.close()
-fa.close()
+    
+FASTQ_File.close()
+FASTA_File.close()
